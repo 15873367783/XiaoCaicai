@@ -1,0 +1,15 @@
+# Project exclude paths
+/mybatis001/target/
+/mybatis002/target/
+/mybatis03/target/
+/mybatis003/target/
+/mybatis004/target/
+/mybatis005/target/
+/mybatis006/target/
+/spring01/target/
+/spring02/target/
+/spring004/target/
+/spring005/target/
+/spring006/target/
+/springmybatis001/target/
+/ssm/target/

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="student" class="com.pojo.Student">
+        <property name="stuid" value="1"></property>
+        <property name="stuname" value="小红"></property>
+        <property name="loves">
+            <list>
+                <value>吃</value>
+                <value>喝</value>
+                <value>玩</value>
+                <value>了</value>
+            </list>
+        </property>
+        <property name="other">
+            <map>
+                <entry key="sex" value="男"></entry>
+                <entry key="age" value="18"></entry>
+            </map>
+        </property>
+        <property name="teacher" ref="teacher"></property>
+    </bean>
+
+    <bean id="teacher" class="com.pojo.Teacher">
+        <property name="tid" value="1"></property>
+        <property name="tname" value="老师"></property>
+    </bean>
+
+    <!--使用构造方法赋值 构造方法需要带参数
+
+<bean id="student" class="com.pojo.Student">
+    <constructor-arg value="1" name="stuid"></constructor-arg>
+    <constructor-arg value="小红" name="stuname"></constructor-arg>
+</bean>
+-->
+    <bean id="transaction" class="com.transaction.MyTransaction"></bean>
+    <bean id="service" class="com.service.CRUD"></bean>
+
+    <!--织入-->
+    <aop:config>
+        <aop:aspect ref="transaction">
+            <aop:before pointcut="execution(* com.service.*.*(..))" method="begin"></aop:before>
+            <aop:after pointcut="execution(* com.service.*.*(..))" method="commit"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+
+
+</beans>

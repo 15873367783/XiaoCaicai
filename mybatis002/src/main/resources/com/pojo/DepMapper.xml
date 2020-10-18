@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pojo.Dep">
+
+    <!-- 一个属性对应一个字段 -->
+    <resultMap id="dep" type="Dep">
+        <id column="depid" property="depid"></id>
+        <result column="depname" property="depname"></result>
+    </resultMap>
+
+    <select id="findall" resultMap="dep">
+        select depid , depname from dep
+    </select>
+
+    <select id="findbyid" resultMap="dep" parameterType="int">
+        select depid ,depname from dep where depid = #{depid}
+    </select>
+
+    <select id="fenye" resultMap="dep">
+        select depid , depname from dep
+    </select>
+
+    <select id="fenye1" resultMap="dep" parameterType="map">
+        select depid , depname from dep limit #{a} , #{b}
+    </select>
+
+    <select id="query" parameterType="com.pojo.Dep" resultMap="dep">
+        select depid, depname from dep where depid = #{depid} and depname = #{depname}
+    </select>
+
+</mapper>
+
+
